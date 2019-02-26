@@ -1,5 +1,6 @@
 # Setup fzf
 # ---------
+export FZF_DEFAULT_COMMAND='rg -g ""'
 if [[ ! "$PATH" == *~/.fzf/bin* ]]; then
   export PATH="$PATH:~/.fzf/bin"
 fi
