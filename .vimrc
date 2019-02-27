@@ -1,3 +1,26 @@
+set nocompatible
+set shell=bash\ -i
+autocmd BufRead,BufNewFile *.md  setfiletype markdown
+filetype plugin on
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+
+" 導入したいプラグインを以下に列挙
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'scrooloose/syntastic'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'junegunn/fzf.vim'
+Plugin 'suan/vim-instant-markdown'
+
+"
+" call vundle#end()
+" filetype plugin indent on
+
+
 set nocompatible               " be iMproved
 filetype off                   " required!
 set fenc=utf-8			"文字コード
@@ -67,34 +90,6 @@ function! s:fzf_statusline()
 					         setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
 					         endfunction
 set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
-" My Bundles here:
-"
-" original repos on github
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'tpope/vim-rails.git'
-" vim-scripts repos
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-" non github repos
-Bundle 'git://git.wincent.com/command-t.git'
-" ...
-filetype plugin indent on     " required!
-"
-" Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-"
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
-
 "行数カウント
 set number
 :command! Nu set relativenumber
