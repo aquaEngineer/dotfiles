@@ -1,7 +1,7 @@
 set nocompatible
 set shell=bash\ -i
 autocmd BufRead,BufNewFile *.md  setfiletype markdown
-filetype plugin on
+filetype off                   " required!
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -12,14 +12,19 @@ Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/syntastic'
-Plugin 'altercation/vim-colors-solarized'
+Plugin 'trusktr/seti.vim'
 Plugin 'junegunn/fzf.vim'
 Plugin 'suan/vim-instant-markdown'
+Plugin 'kannokanno/previm'
 
-"
 " call vundle#end()
-" filetype plugin indent on
+ filetype plugin indent on
 
+" kannokanno/previm
+ autocmd BufRead,BufNewFile *.md set filetype=markdown
+ let g:previm_open_cmd = 'open -a Google\ Chrome'
+ " ctrl pでプレビュー
+ nnoremap <silent> <C-p> :PrevimOpen<CR>
 
 set nocompatible               " be iMproved
 filetype off                   " required!
@@ -73,7 +78,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle'] }
 " Vundle/NeoBundle と同じように
-Plug 'junegunn/seoul256.vim'
 " 指定したファイルタイプを開いたときに読み込む
 Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
 let g:fzf_action = {
