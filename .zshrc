@@ -54,22 +54,19 @@ export GOPATH=$HOME/.go
 export PATH=$PATH:$GOPATH/bin
 export PATH=~/.local/bin/:$PATH
 export ZPLUG_HOME=~/dotfiles/.zplug
-function powerline_precmd() {
-    PS1="$(powerline-shell --shell zsh $?)"
-}
 
-function install_powerline_precmd() {
-  for s in "${precmd_functions[@]}"; do
-    if [ "$s" = "powerline_precmd" ]; then
-      return
-    fi
-  done
-  precmd_functions+=(powerline_precmd)
-}
+# Customise the Powerlevel9k prompts
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S \uE868  %Y-%m-%d}"
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir vcs virtualenv)
+POWERLEVEL9K_SHOW_CHANGESET=true
+POWERLEVEL9K_CHANGESET_HASH_LENGTH=7
+POWERLEVEL9K_MODE='nerdfont-complete'
+source ~/powerlevel9k/powerlevel9k.zsh-theme
 
-if [ "$TERM" != "linux" ]; then
-    install_powerline_precmd
-fi
 # zplug
 source ~/.zplug/init.zsh
 # zplug settings
