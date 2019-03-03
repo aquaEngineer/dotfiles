@@ -16,10 +16,15 @@ Plugin 'trusktr/seti.vim'
 Plugin 'junegunn/fzf.vim'
 Plugin 'suan/vim-instant-markdown'
 Plugin 'kannokanno/previm'
+Plugin 'conradirwin/vim-bracketed-paste' "ペースト時のインデント崩れ防止
+Plugin 'scrooloose/nerdtree'
+Plugin 'tomasr/molokai'
 
-" call vundle#end()
+ call vundle#end()
  filetype plugin indent on
 
+ colorscheme molokai
+ let g:molokai_original = 1
 " kannokanno/previm
  autocmd BufRead,BufNewFile *.md set filetype=markdown
  let g:previm_open_cmd = 'open -a Google\ Chrome'
@@ -33,6 +38,7 @@ set nobackup			"バックアップファイル作成しない
 set noswapfile			"スワップファイル作成しない
 set autoread			"ファイル編集自動読み込み
 set noautoindent
+"set autoindent " 改行時に前の行のインデントを継続する
 set hidden
 set showcmd
 set cursorline
@@ -41,6 +47,9 @@ set smartindent
 set showmatch
 set laststatus=2
 set wildmode=list:longest
+set wildmenu " コマンドモードの補完
+set history=5000 " 保存するコマンド履歴の数
+
 " install vim-pulg                                                                                                                                        
  if has('vim_starting')
    set rtp+=~/.vim/plugged/vim-plug
