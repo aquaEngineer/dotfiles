@@ -84,6 +84,7 @@ zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "chrissicool/zsh-256color"
 zplug "plugins/git",   from:oh-my-zsh
+zplug "momo-lab/zsh-abbrev-alias"
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
   printf "Install? [y/N]: "
@@ -91,5 +92,9 @@ if ! zplug check --verbose; then
     echo; zplug install
   fi
 fi
+
+# Abbrev-alias
+abbrev-alias -f gpull="git status -uno &> /dev/null && git symbolic-ref --short HEAD | xargs echo git pull origin "
+abbrev-alias -f gpush="git status -uno &> /dev/null && git symbolic-ref --short HEAD | xargs echo git push origin "
 
 zplug load
