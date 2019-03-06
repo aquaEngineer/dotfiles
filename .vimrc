@@ -19,6 +19,7 @@ Plugin 'kannokanno/previm'
 Plugin 'conradirwin/vim-bracketed-paste' "ペースト時のインデント崩れ防止
 Plugin 'scrooloose/nerdtree'
 Plugin 'tomasr/molokai'
+Plugin 'jistr/vim-nerdtree-tabs'
 
  call vundle#end()
  filetype plugin indent on
@@ -77,7 +78,6 @@ highlight Pmenu ctermbg=4
 highlight PmenuSel ctermbg=1
 highlight PMenuSbar ctermbg=4
 "vim-plug
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
 call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'edkolev/promptline.vim'
@@ -121,3 +121,20 @@ inoremap <Left> <Nop>
 inoremap <Right> <Nop>
 " NERDTree
 autocmd vimenter * NERDTree
+
+nnoremap <S-Tab> gt
+nnoremap <Tab><Tab> gT
+for i in range(1, 9)
+    execute 'nnoremap <Tab>' . i . ' ' . i . 'gt'
+endfor
+
+" 隠しファイルを表示する
+let NERDTreeShowHidden = 1
+
+nnoremap <silent><C-e> :NERDTreeFocusToggle<CR>
+
+" デフォルトでツリーを表示させる
+let g:nerdtree_tabs_open_on_console_startup=1
+
+" 他のバッファをすべて閉じた時にNERDTreeが開いていたらNERDTreeも一緒に閉じる。
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
