@@ -13,13 +13,14 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/syntastic'
 Plugin 'trusktr/seti.vim'
-Plugin 'junegunn/fzf.vim'
 Plugin 'suan/vim-instant-markdown'
 Plugin 'kannokanno/previm'
 Plugin 'conradirwin/vim-bracketed-paste' "ペースト時のインデント崩れ防止
 Plugin 'scrooloose/nerdtree'
 Plugin 'tomasr/molokai'
 Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'junegunn/fzf.vim'
 
  call vundle#end()
  filetype plugin indent on

@@ -69,8 +69,7 @@ POWERLEVEL9K_CHANGESET_HASH_LENGTH=7
 POWERLEVEL9K_MODE='nerdfont-complete'
 source ~/powerlevel9k/powerlevel9k.zsh-theme
 
-# zplug
-source ~/.zplug/init.zsh
+
 # zplug settings
 source $ZPLUG_HOME/init.zsh
 
@@ -93,8 +92,8 @@ if ! zplug check --verbose; then
   fi
 fi
 
+
+zplug load
 # Abbrev-alias
 abbrev-alias -f gpull="git status -uno &> /dev/null && git symbolic-ref --short HEAD | xargs echo git pull origin "
 abbrev-alias -f gpush="git status -uno &> /dev/null && git symbolic-ref --short HEAD | xargs echo git push origin "
-
-zplug load
