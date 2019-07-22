@@ -52,7 +52,12 @@ fbr() {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #変数設定
 #localectl set-locale LANG=ja_JP.UTF-8
+FILE="~/internalShell/internal.sh"
+ 
+if [ -e $FILE ]; then
 source ~/internalShell/internal.sh
+fi
+
 export GOPATH=$HOME/.go
 export PATH=$PATH:$GOPATH/bin
 export PATH=~/.local/bin/:$PATH

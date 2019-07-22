@@ -67,7 +67,7 @@ set history=5000 " 保存するコマンド履歴の数
 nnoremap j gj
 nnoremap k gk
 set list listchars=tab:\▸\-
-set tabstop=2
+set tabstop=4
 
 "インデント
 set tabstop=4
