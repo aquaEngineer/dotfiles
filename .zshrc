@@ -1,5 +1,8 @@
 alias ls='ls -G'
-alias ll='ls -l'
+#alias ll='ls -l'
+alias ll='exa -bghHliS'
+alias ssh='~/dotfiles/ssh-change-profile.sh'
+alias cat='bat'
 #fzf
 
 frepo() {
