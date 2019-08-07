@@ -1,7 +1,7 @@
 alias ls='ls -G'
 #alias ll='ls -l'
 alias ll='exa -bghHliS'
-alias cat='bat'
+alias vim='/usr/local/bin/vim'
 file="~/dotfiles/ssh-cange-profile.sh"
 if [ -e $file ]; then
 	alias ssh='~/dotfiles/ssh-change-profile.sh'
