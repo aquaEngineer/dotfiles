@@ -8,6 +8,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " 導入したいプラグインを以下に列挙
+Plugin 'phpactor/phpactor'
+Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'airblade/vim-gitgutter'
