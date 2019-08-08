@@ -23,7 +23,9 @@ Plugin 'tomasr/molokai'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'
+Plugin 'shougo/deoplete.nvim'
 
+let g:deoplete#enable_at_startup = 1
  call vundle#end()
  filetype plugin indent on
 
