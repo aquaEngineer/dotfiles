@@ -60,6 +60,7 @@ if [ -e $file ]; then
 source ~/internalshell/internal.sh
 fi
 
+export PATH="$HOME/.pyenv/shims:$PATH"
 export GOPATH=$HOME/.go
 export PATH=$PATH:$GOPATH/bin
 export PATH=~/.local/bin/:$PATH
