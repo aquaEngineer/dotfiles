@@ -116,14 +116,14 @@ set number
 :syntax on
 
 " 矢印キーを無効にする
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
-inoremap <Up> <Nop>
-inoremap <Down> <Nop>
-inoremap <Left> <Nop>
-inoremap <Right> <Nop>
+"noremap <Up> <Nop>
+"noremap <Down> <Nop>
+"noremap <Left> <Nop>
+"noremap <Right> <Nop>
+"inoremap <Up> <Nop>
+"inoremap <Down> <Nop>
+"inoremap <Left> <Nop>
+"inoremap <Right> <Nop>
 " NERDTree
 autocmd vimenter * NERDTree
 
@@ -150,6 +150,9 @@ function! DefinitionJumpWithPhpactor()
     call phpactor#GotoDefinition()
 endfunction
 
+
+let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
+let g:deoplete#ignore_sources.php = ['omni']
 
 " useの補完
 nmap <silent><Leader>u      :<C-u>call phpactor#UseAdd()<CR>

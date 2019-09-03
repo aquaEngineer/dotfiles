@@ -52,8 +52,8 @@ repo = 'cohama/lexima.vim'
 [[plugins]]
 repo = 'alvan/vim-closetag'
 
-[[plugins]]
-repo = 'lvht/phpcd.vim'
+###[[plugins]]
+###repo = 'lvht/phpcd.vim'
 
 [[plugins]]
 repo = 'junegunn/fzf'
