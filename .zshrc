@@ -1,5 +1,5 @@
-alias ls='ls -G'
-alias ll='ls -l'
+alias ls='exa -G'
+alias ll='exa -l'
 #fzf
 
 frepo() {
