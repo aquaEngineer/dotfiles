@@ -2,38 +2,61 @@ set nocompatible
 set shell=bash\ -i
 autocmd BufRead,BufNewFile *.md  setfiletype markdown
 filetype off                   " required!
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
 
-Plugin 'VundleVim/Vundle.vim'
+"dein Scripts-----------------------------
+if &compatible
+  set nocompatible               " Be iMproved
+endif
 
-" 導入したいプラグインを以下に列挙
-Plugin 'phpactor/phpactor'
-Plugin 'shawncplus/phpcomplete.vim'
-Plugin 'roxma/vim-hug-neovim-rpc'
-Plugin 'roxma/nvim-yarp'
-Plugin 'kristijanhusak/deoplete-phpactor'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'scrooloose/syntastic'
-Plugin 'trusktr/seti.vim'
-Plugin 'suan/vim-instant-markdown'
-Plugin 'kannokanno/previm'
-Plugin 'conradirwin/vim-bracketed-paste' "ペースト時のインデント崩れ防止
-Plugin 'scrooloose/nerdtree'
-Plugin 'tomasr/molokai'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plugin 'junegunn/fzf.vim'
-Plugin 'shougo/deoplete.nvim'
+" Required:
+set runtimepath+=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
 
+" Required:
+if dein#load_state($HOME . '/.config/nvim/dein')
+
+  " XDG base direcory compartible
+  let g:dein#cache_directory = $HOME . '/.cache/dein'
+
+  " dein begin
+  call dein#begin($HOME . '/.config/nvim/dein')
+
+ " プラグインリストを収めた TOML ファイル
+ " 予め TOML ファイル（後述）を用意しておく
+ let s:toml_dir  = $HOME . '/.config/nvim/dein' 
+ let s:toml      = s:toml_dir . '/dein.toml'
+ let s:lazy_toml = s:toml_dir . '/dein_lazy.toml'
+
+ " TOML を読み込み、キャッシュしておく
+ call dein#load_toml(s:toml,      {'lazy': 0})
+ call dein#load_toml(s:lazy_toml, {'lazy': 1})
+
+
+  " Required:
+  call dein#end()
+  call dein#save_state()
+endif
+
+" Required:
+filetype plugin indent on
+syntax enable
+
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
+endif
+"End dein Scripts-------------------------
 let g:deoplete#enable_at_startup = 1
- call vundle#end()
- filetype plugin indent on
 
- colorscheme molokai
- let g:molokai_original = 1
+" ###molokai表示設定###
+let g:molokai_original = 1
+colorscheme molokai
+set t_Co=256
+"### lightlineの設定
+set laststatus=2
+
+filetype plugin indent on
+syntax enable
+
 " kannokanno/previm
  autocmd BufRead,BufNewFile *.md set filetype=markdown
  let g:previm_open_cmd = 'open -a Google\ Chrome'
@@ -59,22 +82,10 @@ set wildmode=list:longest
 set wildmenu " コマンドモードの補完
 set history=5000 " 保存するコマンド履歴の数
 
-" install vim-pulg                                                                                                                                        
- if has('vim_starting')
-   set rtp+=~/.vim/plugged/vim-plug
-     if !isdirectory(expand('~/.vim/plugged/vim-plug'))
-         echo 'install vim-plug...'
-             call system('mkdir -p ~/.vim/plugged/vim-plug')
-                 call system('
-                 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-				     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
-                   end
-                   endif
 " 折り返し時に表示行単位での移動できるようにする
 nnoremap j gj
 nnoremap k gk
 set list listchars=tab:\▸\-
-set tabstop=4
 
 "インデント
 set tabstop=4
@@ -85,32 +96,18 @@ autocmd FileType php,ctp :set dictionary=~/dotfiles/.vim/dict/php.dict
 highlight Pmenu ctermbg=4
 highlight PmenuSel ctermbg=1
 highlight PMenuSbar ctermbg=4
-"vim-plug
-call plug#begin()
-Plug 'tpope/vim-sensible'
-Plug 'edkolev/promptline.vim'
-Plug '/usr/local/opt/fzf'
-Plug 'vim-airline/vim-airline'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle'] }
-" Vundle/NeoBundle と同じように
-" 指定したファイルタイプを開いたときに読み込む
-Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
-call plug#end()
 
 function! s:fzf_statusline()
-				 "  Override statusline as you like
-					   highlight fzf1 ctermfg=161 ctermbg=251
-					     highlight fzf2 ctermfg=23 ctermbg=251
-					       highlight fzf3 ctermfg=237 ctermbg=251
-					         setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
-					         endfunction
-set rtp+=~/.vim/bundle/vundle/
+"  Override statusline as you like
+	highlight fzf1 ctermfg=161 ctermbg=251
+	highlight fzf2 ctermfg=23 ctermbg=251
+	highlight fzf3 ctermfg=237 ctermbg=251
+	setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+endfunction
 "行数カウント
 set number
 :command! Nu set relativenumber
@@ -119,14 +116,14 @@ set number
 :syntax on
 
 " 矢印キーを無効にする
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
-inoremap <Up> <Nop>
-inoremap <Down> <Nop>
-inoremap <Left> <Nop>
-inoremap <Right> <Nop>
+"noremap <Up> <Nop>
+"noremap <Down> <Nop>
+"noremap <Left> <Nop>
+"noremap <Right> <Nop>
+"inoremap <Up> <Nop>
+"inoremap <Down> <Nop>
+"inoremap <Left> <Nop>
+"inoremap <Right> <Nop>
 " NERDTree
 autocmd vimenter * NERDTree
 
@@ -153,6 +150,9 @@ function! DefinitionJumpWithPhpactor()
     call phpactor#GotoDefinition()
 endfunction
 
+
+let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
+let g:deoplete#ignore_sources.php = ['omni']
 
 " useの補完
 nmap <silent><Leader>u      :<C-u>call phpactor#UseAdd()<CR>

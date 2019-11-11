@@ -1,31 +1,36 @@
-alias ls='exa -G'
-alias ll='exa -l'
+alias ls='ls -G'
+#alias ll='ls -l'
+alias ll='exa -bghHliS'
+alias vim='/usr/local/bin/vim'
+file="~/dotfiles/ssh-cange-profile.sh"
+if [ -e $file ]; then
+	alias ssh='~/dotfiles/ssh-change-profile.sh'
+fi
 #fzf
 
 frepo() {
-	  local dir
-	    dir=$(ghq list > /dev/null | fzf-tmux --reverse +m) &&
-			    cd $(ghq root)/$dir
-			}
+	local dir
+	dir=$(ghq list > /dev/null | fzf-tmux --reverse +m) && cd $(ghq root)/$dir
+}
 
 function fcd() {
-	    if [[ "$#" != 0 ]]; then
-			builtin cd "$@";
-			 return
-		fi
-		while true; do
-			local lsd=$(echo ".." && ls -p | grep '/$' | sed 's;/$;;')
-			local dir="$(printf '%s\n' "${lsd[@]}" |
-			fzf --reverse --preview '
-			__cd_nxt="$(echo {})";
-			__cd_path="$(echo $(pwd)/${__cd_nxt} | sed "s;//;/;")";
-			echo $__cd_path;
-			echo;
-			ls -p --color=always "${__cd_path}";
-			')"
-			[[ ${#dir} != 0 ]] || return 0
-			builtin cd "$dir" &> /dev/null
-		done
+	if [[ "$#" != 0 ]]; then
+		builtin cd "$@";
+		return
+	fi
+	while true; do
+		local lsd=$(echo ".." && ls -p | grep '/$' | sed 's;/$;;')
+		local dir="$(printf '%s\n' "${lsd[@]}" |
+		fzf --reverse --preview '
+		__cd_nxt="$(echo {})";
+		__cd_path="$(echo $(pwd)/${__cd_nxt} | sed "s;//;/;")";
+		echo $__cd_path;
+		echo;
+		ls -p --color=always "${__cd_path}";
+		')"
+		[[ ${#dir} != 0 ]] || return 0
+		builtin cd "$dir" &> /dev/null
+	done
 }
 
 fshow() {
@@ -49,7 +54,13 @@ fbr() {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #変数設定
 #localectl set-locale LANG=ja_JP.UTF-8
-source ~/internalShell/internal.sh
+file="~/internalshell/internal.sh"
+ 
+if [ -e $file ]; then
+source ~/internalshell/internal.sh
+fi
+
+export PATH="$HOME/.pyenv/shims:$PATH"
 export GOPATH=$HOME/.go
 export PATH=$PATH:$GOPATH/bin
 export PATH=~/.local/bin/:$PATH
