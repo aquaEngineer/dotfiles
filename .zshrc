@@ -1,3 +1,4 @@
+source $HOME/.cargo/env
 alias ls='ls -G'
 #alias ll='ls -l'
 alias ll='exa -bghHliS'
