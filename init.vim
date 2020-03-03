@@ -179,3 +179,16 @@ nmap <silent><C-w><Leader>o :<C-u>call DefinitionJumpWithPhpactor()<CR>
 vmap <silent><Leader>hh     :<C-u>call phpactor#Hover()<CR>
 
 autocmd FileType php setlocal omnifunc=phpactor#Complete
+nnoremap <C-b> :Buffers<CR>
+nnoremap <C-g> :Rg<Space>
+nnoremap <leader><leader> :Commands<CR>
+nnoremap <C-p> :call FzfOmniFiles()<CR>
+
+let g:fzf_action = { 
+  \ 'ctrl-o': 'tab split' 
+  \ }
+
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \  'rg --line-number --no-heading '.shellescape(<q-args>), 0 ,
+  \ fzf#vim#with_preview({'options': '--exact --reverse'}, 'right:50%:wrap'))
