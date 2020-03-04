@@ -1,5 +1,5 @@
 set nocompatible
-set shell=bash\ -i
+set shell=/usr/bin/zsh
 autocmd BufRead,BufNewFile *.md  setfiletype markdown
 filetype off                   " required!
 
