@@ -185,7 +185,8 @@ nnoremap <leader><leader> :Commands<CR>
 nnoremap <C-p> :call FzfOmniFiles()<CR>
 
 let g:fzf_action = { 
-  \ 'ctrl-o': 'tab split' 
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split'
   \ }
 
 command! -bang -nargs=* Rg
