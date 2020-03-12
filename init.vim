@@ -193,3 +193,12 @@ command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \  'rg --line-number --no-heading '.shellescape(<q-args>), 0 ,
   \ fzf#vim#with_preview({'options': '--exact --reverse'}, 'right:50%:wrap'))
+
+"call dein#add('Shougo/defx.nvim')
+"if !has('nvim')
+"  call dein#add('roxma/nvim-yarp')
+"  call dein#add('roxma/vim-hug-neovim-rpc')
+"endif
+
+" NERDTreeのように左に表示する。現在のファイルの階層を開く。
+"  nnoremap <silent><C-e> :<C-u>Defx -split=vertical -winwidth=40 -search=`expand('%:p')` -direction=topleft `expand('%:p:h')`<CR>
